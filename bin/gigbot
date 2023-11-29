@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+require_relative '../lib/gigbot/cli'
+
+Gigbot::CLI.start
