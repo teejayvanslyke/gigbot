@@ -1,3 +1,8 @@
-- https://weworkremotely.com/remote-jobs.rss
-- https://rubyonremote.com/jobs.rss
-- https://remoteok.io/remote-jobs.rss
+- url: https://weworkremotely.com/remote-jobs.rss
+  parser: rss
+- url: https://rubyonremote.com/jobs.rss
+  parser: rss
+- url: https://remoteok.io/remote-jobs.rss
+  parser: rss
+- url: https://remote.co/remote-jobs/developer/
+  parser: remote.co

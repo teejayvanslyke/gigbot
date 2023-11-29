@@ -2,31 +2,38 @@ require 'yaml'
 require 'feedjira'
 require 'open-uri'
 require_relative './gig'
+require_relative './parsers'
 require 'pp'
 
 module Gigbot
   class Source
     SOURCES_YAML = File.dirname(__FILE__) + '/sources.yml'
-    attr_reader :url
+    attr_reader :url, :parser
 
-    def initialize(url)
+    def initialize(url, parser)
       @url = url
+      @parser = parser
     end
 
     def import
-      URI.open(url) do |rss|
-        feed = Feedjira.parse(rss.read)
-        feed.entries.each do |rss_item|
-          gig = Gigbot::Gig.from_rss(rss_item)
-          gig.save
+      case parser
+      when 'rss'
+        URI.open(url) do |rss|
+          feed = Feedjira.parse(rss.read)
+          feed.entries.each do |rss_item|
+            gig = Gigbot::Gig.from_rss(rss_item)
+            gig.save
+          end
         end
+      when 'remote.co'
+        Gigbot::Parsers::RemoteCo.parse(url)
       end
     end
 
     def self.each
-      source_urls  = YAML.load_file(SOURCES_YAML)
-      source_urls.each do |source_url|
-        yield new(source_url)
+      definitions = YAML.load_file(SOURCES_YAML)
+      definitions.each do |definition|
+        yield new(definition['url'], definition['parser'])
       end
     end
   end

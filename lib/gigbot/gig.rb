@@ -38,9 +38,13 @@ module Gigbot
       all.select {|gig| gig.created_at > date}
     end
 
+    def self.generate_id(guid)
+      Digest::SHA1.hexdigest(guid)
+    end
+
     def self.from_rss(rss_item)
       new(
-        id: Digest::SHA1.hexdigest(rss_item.id),
+        id: generate_id(rss_item.id),
         title: rss_item.title.strip,
         url: rss_item.url.strip,
         created_at: rss_item.published
