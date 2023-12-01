@@ -17,6 +17,7 @@ module Gigbot
         results = browser.at_css('.max-w-7xl > .my-5 ul')
         results.css('li').each do |entry|
           link = entry.at_css('h2 > a')
+          next unless link
           title = link.text.strip
           url = "https://rustjobs.dev" + link.attribute('href')
           created_at = Time.parse(entry.at_css('time').attribute('datetime'))
