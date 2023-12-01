@@ -18,13 +18,12 @@ module Gigbot
             url = "https://jsremotely.com" + link.attribute('href').value
             created_at = dehumanize_date(entry.css('div:last-child p').last.text)
 
-            gig = Gigbot::Gig.new(
+            yield Gigbot::Gig.new(
               title: title,
               url: url,
               id: Gigbot::Gig.generate_id(url),
               created_at: created_at
             )
-            gig.save
           end
         end
       end

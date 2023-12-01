@@ -8,8 +8,7 @@ module Gigbot
         URI.open(url) do |rss|
           feed = Feedjira.parse(rss.read)
           feed.entries.each do |rss_item|
-            gig = Gigbot::Gig.from_rss(rss_item)
-            gig.save
+            yield Gigbot::Gig.from_rss(rss_item)
           end
         end
       end

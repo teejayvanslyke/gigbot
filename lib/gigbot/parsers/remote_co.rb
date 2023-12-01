@@ -16,7 +16,7 @@ module Gigbot
         URI.open(url) do |file|
           doc = Nokogiri::HTML(file)
           doc.css('.card-body a.card.m-0').each do |card|
-            parse_card(card)
+            yield parse_card(card)
           end
         end
       end
@@ -27,13 +27,12 @@ module Gigbot
         id = url
         created_at = dehumanize_date(card.css('date').first.text.strip)
 
-        gig = Gigbot::Gig.new(
+        Gigbot::Gig.new(
           title: title,
           url: url,
           id: Gigbot::Gig.generate_id(id),
           created_at: created_at
         )
-        gig.save
       end
     end
   end

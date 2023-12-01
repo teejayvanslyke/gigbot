@@ -3,12 +3,8 @@ require 'ferrum'
 
 module Gigbot
   module Parsers
-    class RustJobs
+    class RustJobs < Base
       include Gigbot::Helpers::DateHelpers
-
-      def self.parse(url)
-        new.parse(url)
-      end
 
       def parse(url)
         browser = Ferrum::Browser.new
@@ -21,13 +17,12 @@ module Gigbot
           title = link.text.strip
           url = "https://rustjobs.dev" + link.attribute('href')
           created_at = Time.parse(entry.at_css('time').attribute('datetime'))
-          gig = Gigbot::Gig.new(
+          yield Gigbot::Gig.new(
             title: title,
             url: url,
             id: Gigbot::Gig.generate_id(url),
             created_at: created_at
           )
-          gig.save
         end
       end
     end

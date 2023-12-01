@@ -7,14 +7,15 @@ require 'pp'
 module Gigbot
   class Source
     SOURCES_YAML = File.dirname(__FILE__) + '/sources.yml'
-    attr_reader :url, :parser_name
+    attr_reader :url, :parser_name, :imported
 
     def initialize(url, parser_name)
       @url = url
       @parser_name = parser_name
+      @imported = []
     end
 
-    def parser
+    def parser_class
       case parser_name
       when 'rss'
         Gigbot::Parsers::RSS
@@ -27,8 +28,16 @@ module Gigbot
       end
     end
 
+    def parser
+      parser_class.new
+    end
+
     def import
-      parser.parse(url)
+      @imported = []
+      parser.parse(url) do |gig|
+        gig.save
+        @imported << gig
+      end
     end
 
     def self.each
