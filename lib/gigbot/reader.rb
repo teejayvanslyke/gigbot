@@ -1,5 +1,6 @@
 require_relative './gig'
 require 'colorize'
+require 'tty-pager'
 
 module Gigbot
   class Reader
@@ -7,21 +8,23 @@ module Gigbot
       new.run(options)
     end
 
-    def print_gig(gig)
-      puts gig.title.colorize(color: :blue, mode: :bold)
-      puts gig.url.colorize(color: :yellow, mode: :underline)
-      puts gig.created_at
-      puts ""
+    def print_gig(pager, gig)
+      pager.puts gig.title.colorize(color: :blue, mode: :bold)
+      pager.puts gig.url.colorize(color: :yellow, mode: :underline)
+      pager.puts gig.created_at
+      pager.puts ""
     end
 
     def run(options = {})
-      if options[:since]
-        Gigbot::Gig.since(options[:since]).each do |gig|
-          print_gig(gig)
-        end
-      else
-        Gigbot::Gig.all.each do |gig|
-          print_gig(gig)
+      TTY::Pager.page do |pager|
+        if options[:since]
+          Gigbot::Gig.since(options[:since]).each do |gig|
+            print_gig(pager, gig)
+          end
+        else
+          Gigbot::Gig.all.each do |gig|
+            print_gig(pager, gig)
+          end
         end
       end
     end
