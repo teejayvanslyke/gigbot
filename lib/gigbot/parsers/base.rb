@@ -1,8 +1,14 @@
 module Gigbot
   module Parsers
     class Base
-      def self.parse(url)
-        new.parse(url)
+      def initialize(url)
+        @url = url
+      end
+
+      attr_reader :url
+
+      def title
+        self.class.name
       end
     end
   end

@@ -12,7 +12,7 @@ module Gigbot
         puts [
           "✓".colorize(color: :green),
           "(#{source.imported.length})".ljust(7, ' ').colorize(color: :yellow),
-          source.url.colorize(color: :blue)
+          source.parser.title.colorize(color: :blue)
         ].join(' ')
       end
     end

@@ -29,12 +29,12 @@ module Gigbot
     end
 
     def parser
-      parser_class.new
+      parser_class.new(url)
     end
 
     def import
       @imported = []
-      parser.parse(url) do |gig|
+      parser.parse do |gig|
         gig.save
         @imported << gig
       end

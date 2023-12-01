@@ -4,7 +4,11 @@ require 'open-uri'
 module Gigbot
   module Parsers
     class RSS < Base
-      def parse(url)
+      def title
+        Feedjira.parse(URI.open(url).read).title
+      end
+
+      def parse
         URI.open(url) do |rss|
           feed = Feedjira.parse(rss.read)
           feed.entries.each do |rss_item|

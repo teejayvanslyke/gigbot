@@ -5,14 +5,14 @@ require_relative '../helpers/date_helpers'
 
 module Gigbot
   module Parsers
-    class RemoteCo
+    class RemoteCo < Base
       include Gigbot::Helpers::DateHelpers
 
-      def self.parse(url)
-        new.parse(url)
+      def title
+        "Remote.co"
       end
 
-      def parse(url)
+      def parse
         URI.open(url) do |file|
           doc = Nokogiri::HTML(file)
           doc.css('.card-body a.card.m-0').each do |card|

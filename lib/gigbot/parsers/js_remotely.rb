@@ -1,13 +1,13 @@
 module Gigbot
   module Parsers
-    class JsRemotely
+    class JsRemotely < Base
       include Gigbot::Helpers::DateHelpers
 
-      def self.parse(url)
-        new.parse(url)
+      def title
+        "JS Remotely"
       end
 
-      def parse(url)
+      def parse
         URI.open(url) do |file|
           doc = Nokogiri::HTML(file)
           doc.css('[data-cy="jobList"] > div').each do |entry|

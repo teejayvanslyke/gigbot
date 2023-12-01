@@ -6,7 +6,11 @@ module Gigbot
     class RustJobs < Base
       include Gigbot::Helpers::DateHelpers
 
-      def parse(url)
+      def title
+        "Rust Jobs"
+      end
+
+      def parse
         browser = Ferrum::Browser.new
         browser.goto(url)
         browser.network.wait_for_idle
