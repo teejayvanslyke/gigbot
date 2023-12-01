@@ -27,6 +27,10 @@ module Gigbot
         end
       when 'remote.co'
         Gigbot::Parsers::RemoteCo.parse(url)
+      when 'js-remotely'
+        Gigbot::Parsers::JsRemotely.parse(url)
+      when 'rust-jobs'
+        Gigbot::Parsers::RustJobs.parse(url)
       end
     end
 

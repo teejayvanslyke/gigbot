@@ -1,3 +1,13 @@
+- url: https://rustjobs.dev/
+  parser: rust-jobs
+- url: https://nodesk.co/remote-jobs/engineering/index.xml
+  parser: rss
+- url: https://www.skipthedrive.com/search/Web+Development/feed/rss2/
+  parser: rss
+- url: https://www.pyjobs.com/rss
+  parser: rss
+- url: https://jsremotely.com/
+  parser: js-remotely
 - url: https://weworkremotely.com/remote-jobs.rss
   parser: rss
 - url: https://rubyonremote.com/jobs.rss
