@@ -22,7 +22,7 @@ module Gigbot
       Gigbot::Reader.run(since: Time.now - (60 * 60 * 24))
     end
 
-    map up: :update
-    map ls: :list
+    map "up" => "update"
+    map "ls" => "list"
   end
 end

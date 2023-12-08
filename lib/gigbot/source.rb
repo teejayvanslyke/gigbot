@@ -25,16 +25,25 @@ module Gigbot
         Gigbot::Parsers::JsRemotely
       when 'rust-jobs'
         Gigbot::Parsers::RustJobs
+      when 'justremote.co'
+        Gigbot::Parsers::JustRemoteCo
+      when 'builtin'
+        Gigbot::Parsers::Builtin
       end
     end
 
     def parser
-      parser_class.new(url)
+      @parser ||= parser_class.new(url)
+    end
+
+    def title
+      @title ||= parser.title
     end
 
     def import
       @imported = []
       parser.parse do |gig|
+        gig.source = self
         gig.save
         @imported << gig
       end

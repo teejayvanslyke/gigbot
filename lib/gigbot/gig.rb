@@ -9,9 +9,11 @@ module Gigbot
       @title = attributes[:title]
       @url = attributes[:url]
       @created_at = attributes[:created_at]
+      @source_title = attributes[:source_title]
     end
 
-    attr_reader :id, :title, :url, :created_at
+    attr_reader :id, :title, :url, :created_at, :source_title
+    attr_accessor :source
 
     def as_json
       {
@@ -19,6 +21,7 @@ module Gigbot
         title: title,
         url: url,
         created_at: created_at,
+        source_title: source.title,
       }
     end
 

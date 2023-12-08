@@ -11,6 +11,7 @@ module Gigbot
     def print_gig(pager, gig)
       pager.puts gig.title.colorize(color: :blue, mode: :bold)
       pager.puts gig.url.colorize(color: :yellow, mode: :underline)
+      pager.puts gig.source_title.colorize(color: :green)
       pager.puts gig.created_at
       pager.puts ""
     end

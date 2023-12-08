@@ -2,8 +2,8 @@ module Gigbot
   module Helpers
     module DateHelpers
       def dehumanize_date(humanized_date)
-        parts = humanized_date.split(' ')
-        quantity = if parts[0].strip == 'a' then 1 else parts[0].to_i end
+        parts = humanized_date.downcase.split(' ')
+        quantity = if ['a', 'an'].include?(parts[0].strip) then 1 else parts[0].to_i end
         unit = parts[1]
 
         seconds = case unit
