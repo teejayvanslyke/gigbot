@@ -33,6 +33,11 @@ module Gigbot
       Gigbot::DeepUpdater.run
     end
 
+    desc "search", "Searches jobs by keyword"
+    def search(query)
+      Gigbot::Reader.run(query: query)
+    end
+
     map "up" => "update"
     map "ls" => "list"
   end

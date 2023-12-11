@@ -9,11 +9,11 @@ module Gigbot
     end
 
     def print_gig(pager, gig)
-      pager.puts gig.title.colorize(color: :blue, mode: :bold)
-      pager.puts gig.url.colorize(color: :yellow, mode: :underline)
-      pager.puts gig.source_title.colorize(color: :green)
-      pager.puts gig.created_at
-      pager.puts gig.description
+      pager.puts "job #{gig.id}".colorize(color: :yellow)
+      pager.puts "Title:  #{gig.title}"
+      pager.puts "URL:    #{gig.url}"
+      pager.puts "Source: #{gig.source_title}"
+      pager.puts "Date:   #{gig.created_at}"
       pager.puts ""
     end
 
