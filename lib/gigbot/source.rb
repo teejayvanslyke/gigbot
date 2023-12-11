@@ -16,20 +16,7 @@ module Gigbot
     end
 
     def parser_class
-      case parser_name
-      when 'rss'
-        Gigbot::Parsers::RSS
-      when 'remote.co'
-        Gigbot::Parsers::RemoteCo
-      when 'js-remotely'
-        Gigbot::Parsers::JsRemotely
-      when 'rust-jobs'
-        Gigbot::Parsers::RustJobs
-      when 'justremote.co'
-        Gigbot::Parsers::JustRemoteCo
-      when 'builtin'
-        Gigbot::Parsers::Builtin
-      end
+      Gigbot::Parsers[parser_name]
     end
 
     def parser

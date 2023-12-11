@@ -32,3 +32,5 @@ module Gigbot
     end
   end
 end
+
+Gigbot::Parsers.register('rust-jobs', Gigbot::Parsers::RustJobs)

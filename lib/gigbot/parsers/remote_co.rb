@@ -37,3 +37,5 @@ module Gigbot
     end
   end
 end
+
+Gigbot::Parsers.register('remote.co', Gigbot::Parsers::RemoteCo)

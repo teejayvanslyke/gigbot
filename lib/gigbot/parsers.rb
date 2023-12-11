@@ -5,3 +5,4 @@ require_relative './parsers/rust_jobs'
 require_relative './parsers/just_remote_co'
 require_relative './parsers/builtin'
 require_relative './parsers/rss'
+

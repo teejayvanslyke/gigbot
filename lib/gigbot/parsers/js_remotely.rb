@@ -30,3 +30,5 @@ module Gigbot
     end
   end
 end
+
+Gigbot::Parsers.register('js-remotely', Gigbot::Parsers::JsRemotely)

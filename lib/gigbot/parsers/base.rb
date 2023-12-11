@@ -1,5 +1,15 @@
 module Gigbot
   module Parsers
+    @registry = {}
+
+    def self.register(name, klass)
+      @registry[name] = klass
+    end
+
+    def self.[](name)
+      @registry[name]
+    end
+
     class Base
       def initialize(url)
         @url = url

@@ -23,7 +23,7 @@ module Gigbot
 
       def parse_card(card)
         title = card.css('h2 a').text.strip
-        url = card.css('h2 a').attribute('href').value
+        url = "https://www.builtin.com" + card.css('h2 a').attribute('href').value
         id = url
         date_css = 'div#main.row div.col-12.col-lg-6.bounded-attribute-section.d-flex.align-items-start.align-items-lg-center.fs-md.flex-column.flex-lg-row div.d-flex.flex-grow-1.gap-lg div.d-flex.flex-column.gap-0.flex-md-row.gap-md-md.flex-lg-column.gap-lg-0.fill-even div.d-flex.align-items-start.gap-sm span.font-barlow.text-gray-03'
         created_at = dehumanize_date(card.css(date_css).first.text.strip)
@@ -38,3 +38,5 @@ module Gigbot
     end
   end
 end
+
+Gigbot::Parsers.register('builtin', Gigbot::Parsers::Builtin)

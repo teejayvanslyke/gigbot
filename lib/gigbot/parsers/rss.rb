@@ -23,3 +23,5 @@ module Gigbot
     end
   end
 end
+
+Gigbot::Parsers.register('rss', Gigbot::Parsers::RSS)
