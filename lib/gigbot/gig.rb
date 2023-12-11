@@ -11,9 +11,10 @@ module Gigbot
       @url = attributes[:url]
       @created_at = attributes[:created_at]
       @source_title = attributes[:source_title]
+      @description = attributes[:description]
     end
 
-    attr_reader :id, :title, :url, :created_at, :source_title
+    attr_reader :id, :title, :url, :created_at, :source_title, :description
     attr_accessor :source
 
     def as_json
@@ -23,6 +24,7 @@ module Gigbot
         url: url,
         created_at: created_at,
         source_title: source.title,
+        description: description,
       }
     end
 
@@ -48,15 +50,6 @@ module Gigbot
 
     def self.generate_id(guid)
       Digest::SHA1.hexdigest(guid)
-    end
-
-    def self.from_rss(rss_item)
-      new(
-        id: generate_id(rss_item.id),
-        title: rss_item.title.strip,
-        url: rss_item.url.strip,
-        created_at: rss_item.published
-      )
     end
 
     def self.from_yaml(yaml_path)

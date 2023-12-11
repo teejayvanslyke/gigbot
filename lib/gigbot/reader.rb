@@ -13,6 +13,7 @@ module Gigbot
       pager.puts gig.url.colorize(color: :yellow, mode: :underline)
       pager.puts gig.source_title.colorize(color: :green)
       pager.puts gig.created_at
+      pager.puts gig.description
       pager.puts ""
     end
 

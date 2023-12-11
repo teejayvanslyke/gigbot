@@ -3,6 +3,7 @@ require 'thor'
 require 'date'
 
 require_relative 'updater'
+require_relative 'deep_updater'
 require_relative 'reader'
 
 module Gigbot
@@ -25,6 +26,11 @@ module Gigbot
     desc "clean", "Clears data"
     def clean
       Gigbot::Gig.clean!
+    end
+
+    desc "deep", "Fetches detailed metadata for all existing jobs"
+    def deep
+      Gigbot::DeepUpdater.run
     end
 
     map "up" => "update"
