@@ -22,6 +22,11 @@ module Gigbot
       Gigbot::Reader.run(since: Time.now - (60 * 60 * 24))
     end
 
+    desc "clean", "Clears data"
+    def clean
+      Gigbot::Gig.clean!
+    end
+
     map "up" => "update"
     map "ls" => "list"
   end

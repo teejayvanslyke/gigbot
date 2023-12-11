@@ -1,4 +1,5 @@
 require 'digest'
+require 'fileutils'
 
 module Gigbot
   class Gig
@@ -27,6 +28,10 @@ module Gigbot
 
     def save
       File.open(DATA_PATH + '/' + id + '.yml', 'w') {|f| f.write(YAML.dump(as_json))}
+    end
+
+    def self.clean!
+      FileUtils.rm_rf Dir.glob(File.join(DATA_PATH, '*.yml'))
     end
 
     def self.all
