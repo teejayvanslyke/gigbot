@@ -15,13 +15,14 @@ module Gigbot
             "(#{source.imported.length})".ljust(7, ' ').colorize(color: :yellow),
             source.parser.title.colorize(color: :blue)
           ].join(' ')
-        rescue Exception => e
+        rescue StandardError => e
           puts [
             "X".colorize(color: :red),
             "(X)".ljust(7, ' ').colorize(color: :red),
             source.url.colorize(color: :red),
             e,
           ].join(' ')
+          puts e.backtrace
         end
       end
     end
