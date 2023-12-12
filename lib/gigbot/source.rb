@@ -38,9 +38,11 @@ module Gigbot
     end
 
     def import_deep(gig)
-      parser.parse_deep(gig) do |params|
-        gig.update_attributes(params)
-        gig.save
+      params = parser.parse_deep(gig)
+      if params.length > 0
+        return gig.update_attributes(params)
+      else
+        return false
       end
     end
 

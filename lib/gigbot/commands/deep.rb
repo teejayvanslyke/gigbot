@@ -6,8 +6,9 @@ module Gigbot
 
       def self.run
         Gigbot::Gig.each do |gig|
-          gig.source.import_deep(gig)
-          puts gig.to_s
+          if gig.source.import_deep(gig)
+            puts gig.to_s
+          end
         end
       end
     end

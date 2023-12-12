@@ -1,7 +1,11 @@
+require_relative '../helpers/date_helpers'
+require_relative '../helpers/string_helpers'
+
 module Gigbot
   module Parsers
     class JsRemotely < Base
       include Gigbot::Helpers::DateHelpers
+      include Gigbot::Helpers::StringHelpers
 
       def title
         "JS Remotely"
@@ -28,9 +32,9 @@ module Gigbot
       end
 
       def parse_deep(gig)
-        URI.open(url) do |file|
+        URI.open(gig.url) do |file|
           doc = Nokogiri::HTML(file)
-          description = doc.xpath("//div[starts-with(@class, 'JobBody_jobBodyText')]").first.text
+          description = textify_html_summary(doc.xpath("//div[starts-with(@class, 'JobBody_jobBodyText')]").first.inner_html)
           return { description: description }
         end
       end

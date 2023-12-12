@@ -4,20 +4,14 @@ require 'open-uri'
 module Gigbot
   module Parsers
     class RSS < Base
+      include Gigbot::Helpers::StringHelpers
+
       def open_uri(&block)
         URI.open(url, read_timeout: 10, &block)
       end
 
       def title
         @title ||= Feedjira.parse(open_uri.read).title
-      end
-
-      def textify_html_summary(summary)
-        IO.popen("w3m -T text/html -dump -cols 80", mode="r+") do |io|
-          io.write(summary)
-          io.close_write
-          return io.read
-        end
       end
 
       def parse

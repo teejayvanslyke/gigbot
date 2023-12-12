@@ -13,8 +13,7 @@ module Gigbot
       @description = attributes[:description]
     end
 
-    attr_reader :title, :url, :created_at, :source, :description
-    attr_accessor :source
+    attr_accessor :title, :url, :created_at, :source, :description
 
     def as_json
       {
@@ -33,6 +32,15 @@ module Gigbot
 
     def save
       File.open(DATA_PATH + '/' + id + '.yml', 'w') {|f| f.write(YAML.dump(as_json))}
+      true
+    end
+
+    def update_attributes(attributes)
+      attributes.each do |key, value|
+        instance_variable_set("@#{key}", value)
+      end
+
+      save
     end
 
     def to_s

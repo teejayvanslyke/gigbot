@@ -25,6 +25,7 @@ module Gigbot
       end
 
       def parse_deep(gig)
+        {}
       end
     end
   end
