@@ -2,26 +2,23 @@ require 'rubygems'
 require 'thor'
 require 'date'
 
-require_relative 'updater'
-require_relative 'deep_updater'
-require_relative 'reader'
-require_relative 'gig_reader'
+require_relative 'commands'
 
 module Gigbot
   class CLI < Thor
     desc "update", "Updates jobs from all sources"
     def update
-      Gigbot::Updater.run
+      Gigbot::Commands::Update.run
     end
 
     desc "list", "Lists jobs from all sources"
     def list
-      Gigbot::Reader.run
+      Gigbot::Commands::List.run
     end
 
     desc "today", "Lists jobs for past 24 hours"
     def today
-      Gigbot::Reader.run(since: Time.now - (60 * 60 * 24))
+      Gigbot::Commands::List.run(since: Time.now - (60 * 60 * 24))
     end
 
     desc "clean", "Clears data"
@@ -31,17 +28,17 @@ module Gigbot
 
     desc "deep", "Fetches detailed metadata for all existing jobs"
     def deep
-      Gigbot::DeepUpdater.run
+      Gigbot::Commands::Deep.run
     end
 
     desc "search", "Searches jobs by keyword"
     def search(query)
-      Gigbot::Reader.run(query: query)
+      Gigbot::Commands::List.run(query: query)
     end
 
     desc "show", "Show a full job listing"
     def show(sha)
-      Gigbot::GigReader.run(sha)
+      Gigbot::Commands::Show.run(sha)
     end
 
     map "up" => "update"
