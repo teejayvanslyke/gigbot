@@ -28,6 +28,11 @@ module Gigbot
       end
 
       def parse_deep(gig)
+        URI.open(url) do |file|
+          doc = Nokogiri::HTML(file)
+          description = doc.xpath("//div[starts-with(@class, 'JobBody_jobBodyText')]").first.text
+          return { description: description }
+        end
       end
     end
   end

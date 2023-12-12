@@ -8,7 +8,7 @@ module Gigbot
           "job #{gig.id}".colorize(color: :yellow),
           "Title:  #{gig.title}",
           "URL:    #{gig.url}",
-          "Source: #{gig.source_title}",
+          "Source: #{gig.source.title}",
           "Date:   #{gig.created_at}"
         ].join("\n")
       end

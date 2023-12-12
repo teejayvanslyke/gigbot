@@ -9,11 +9,11 @@ module Gigbot
       @title = attributes[:title]
       @url = attributes[:url]
       @created_at = attributes[:created_at]
-      @source_title = attributes[:source_title]
+      @source = Source.find(attributes[:source_id])
       @description = attributes[:description]
     end
 
-    attr_reader :title, :url, :created_at, :source_title, :description
+    attr_reader :title, :url, :created_at, :source, :description
     attr_accessor :source
 
     def as_json
@@ -22,7 +22,7 @@ module Gigbot
         title: title,
         url: url,
         created_at: created_at,
-        source_title: source.title,
+        source_id: source.id,
         description: description,
       }
     end
@@ -33,6 +33,10 @@ module Gigbot
 
     def save
       File.open(DATA_PATH + '/' + id + '.yml', 'w') {|f| f.write(YAML.dump(as_json))}
+    end
+
+    def to_s
+      title
     end
 
     def self.clean!
