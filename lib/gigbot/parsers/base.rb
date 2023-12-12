@@ -20,6 +20,12 @@ module Gigbot
       def title
         self.class.name
       end
+
+      def parse
+      end
+
+      def parse_deep(gig)
+      end
     end
   end
 end

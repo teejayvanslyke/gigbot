@@ -6,7 +6,6 @@ module Gigbot
     DATA_PATH = File.dirname(__FILE__) + '/../../data'
 
     def initialize(attributes = {})
-      @id = attributes[:id]
       @title = attributes[:title]
       @url = attributes[:url]
       @created_at = attributes[:created_at]
@@ -14,7 +13,7 @@ module Gigbot
       @description = attributes[:description]
     end
 
-    attr_reader :id, :title, :url, :created_at, :source_title, :description
+    attr_reader :title, :url, :created_at, :source_title, :description
     attr_accessor :source
 
     def as_json
@@ -26,6 +25,10 @@ module Gigbot
         source_title: source.title,
         description: description,
       }
+    end
+
+    def id
+      Digest::SHA1.hexdigest(url)
     end
 
     def save
@@ -52,14 +55,9 @@ module Gigbot
       all.select {|gig| gig.created_at > date}
     end
 
-    def self.generate_id(guid)
-      Digest::SHA1.hexdigest(guid)
-    end
-
     def self.from_yaml(yaml_path)
       data = YAML.load_file(yaml_path)
       new(data)
     end
-
   end
 end

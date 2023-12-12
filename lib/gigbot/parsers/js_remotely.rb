@@ -18,14 +18,16 @@ module Gigbot
             url = "https://jsremotely.com" + link.attribute('href').value
             created_at = dehumanize_date(entry.css('div:last-child p').last.text)
 
-            yield Gigbot::Gig.new(
+            yield({
               title: title,
               url: url,
-              id: Gigbot::Gig.generate_id(url),
               created_at: created_at
-            )
+            })
           end
         end
+      end
+
+      def parse_deep(gig)
       end
     end
   end

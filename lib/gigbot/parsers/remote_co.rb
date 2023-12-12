@@ -27,12 +27,11 @@ module Gigbot
         id = url
         created_at = dehumanize_date(card.css('date').first.text.strip)
 
-        Gigbot::Gig.new(
+        {
           title: title,
           url: url,
-          id: Gigbot::Gig.generate_id(id),
-          created_at: created_at
-        )
+          created_at: created_at,
+        }
       end
     end
   end

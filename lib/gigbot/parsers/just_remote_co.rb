@@ -26,12 +26,11 @@ module Gigbot
           title = item.at_css('h3').text
           url = "https://justremote.co/" + link.attribute('href')
 
-          yield Gigbot::Gig.new(
+          yield({
             title: title,
             url: url,
-            id: Gigbot::Gig.generate_id(url),
-            created_at: created_at
-          )
+            created_at: created_at,
+          })
         end
       end
     end

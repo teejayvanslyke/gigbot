@@ -29,7 +29,8 @@ module Gigbot
 
     def import
       @imported = []
-      parser.parse do |gig|
+      parser.parse do |params|
+        gig = Gig.new(params)
         gig.source = self
         gig.save
         @imported << gig

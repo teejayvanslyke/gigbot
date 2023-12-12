@@ -28,12 +28,11 @@ module Gigbot
         date = card.css('.job-age').first.text.gsub('New!', '').strip
         created_at = dehumanize_date(date)
 
-        Gigbot::Gig.new(
+        {
           title: title,
           url: url,
-          id: Gigbot::Gig.generate_id(id),
-          created_at: created_at
-        )
+          created_at: created_at,
+        }
       end
     end
   end

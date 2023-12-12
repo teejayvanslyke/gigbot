@@ -21,12 +21,11 @@ module Gigbot
           title = link.text.strip
           url = "https://rustjobs.dev" + link.attribute('href')
           created_at = Time.parse(entry.at_css('time').attribute('datetime'))
-          yield Gigbot::Gig.new(
+          yield({
             title: title,
             url: url,
-            id: Gigbot::Gig.generate_id(url),
-            created_at: created_at
-          )
+            created_at: created_at,
+          })
         end
       end
     end
