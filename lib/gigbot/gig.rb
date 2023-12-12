@@ -44,6 +44,10 @@ module Gigbot
       all.each {|gig| yield gig}
     end
 
+    def self.find(id)
+      from_yaml(DATA_PATH + '/' + id + '.yml')
+    end
+
     def self.since(date)
       all.select {|gig| gig.created_at > date}
     end

@@ -5,6 +5,7 @@ require 'date'
 require_relative 'updater'
 require_relative 'deep_updater'
 require_relative 'reader'
+require_relative 'gig_reader'
 
 module Gigbot
   class CLI < Thor
@@ -36,6 +37,11 @@ module Gigbot
     desc "search", "Searches jobs by keyword"
     def search(query)
       Gigbot::Reader.run(query: query)
+    end
+
+    desc "show", "Show a full job listing"
+    def show(sha)
+      Gigbot::GigReader.run(sha)
     end
 
     map "up" => "update"
