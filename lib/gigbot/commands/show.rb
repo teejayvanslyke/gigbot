@@ -1,4 +1,5 @@
 require_relative '../gig_writer'
+require_relative '../formatters/full'
 
 module Gigbot
   module Commands
@@ -9,9 +10,9 @@ module Gigbot
 
       def run(sha)
         TTY::Pager.page do |pager|
-          writer = GigWriter.new(pager)
+          writer = GigWriter.new(pager, Gigbot::Formatters::Full)
           gig = Gig.find(sha)
-          writer.write_long(gig)
+          writer.write(gig)
         end
       end
     end

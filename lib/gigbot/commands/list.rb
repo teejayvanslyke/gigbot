@@ -12,8 +12,9 @@ module Gigbot
       end
 
       def run(options = {})
+        formatter = options[:formatter] || Gigbot::Formatters::Short
         TTY::Pager.page do |pager|
-          writer = GigWriter.new(pager)
+          writer = GigWriter.new(pager, formatter)
           if options[:since]
             Gig.since(options[:since]).each do |gig|
               writer.write(gig)

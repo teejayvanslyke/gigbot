@@ -1,23 +1,17 @@
+require_relative './formatters/short'
+
 module Gigbot
   class GigWriter
-    def initialize(io)
+    def initialize(io, formatter_class)
       @io = io
+      @formatter_class = formatter_class
     end
 
-    attr_reader :io
+    attr_reader :io, :formatter_class
 
     def write(gig)
-      io.puts "job #{gig.id}".colorize(color: :yellow)
-      io.puts "Title:  #{gig.title}"
-      io.puts "URL:    #{gig.url}"
-      io.puts "Source: #{gig.source_title}"
-      io.puts "Date:   #{gig.created_at}"
+      io.puts formatter_class.new(gig).to_s
       io.puts ""
-    end
-
-    def write_long(gig)
-      write(gig)
-      io.puts gig.description
     end
   end
 end
