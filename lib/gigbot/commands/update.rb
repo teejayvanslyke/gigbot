@@ -14,16 +14,14 @@ module Gigbot
             puts [
               "✓".colorize(color: :green),
               "(#{source.imported.length})".ljust(7, ' ').colorize(color: :yellow),
-              source.parser.title.colorize(color: :blue)
+              source.title,
             ].join(' ')
           rescue StandardError => e
             puts [
               "X".colorize(color: :red),
-              "(X)".ljust(7, ' ').colorize(color: :red),
-              source.url.colorize(color: :red),
-              e,
+              "".ljust(7, ' '),
+              source.title,
             ].join(' ')
-            puts e.backtrace
           end
         end
       end
