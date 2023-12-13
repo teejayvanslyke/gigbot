@@ -2,11 +2,13 @@ require 'time'
 require 'open-uri'
 require 'nokogiri'
 require_relative '../helpers/date_helpers'
+require_relative '../helpers/string_helpers'
 
 module Gigbot
   module Parsers
     class RemoteCo < Base
       include Gigbot::Helpers::DateHelpers
+      include Gigbot::Helpers::StringHelpers
 
       def title
         "Remote.co"
@@ -32,6 +34,14 @@ module Gigbot
           url: url,
           created_at: created_at,
         }
+      end
+
+      def parse_deep(gig)
+        URI.open(gig.url) do |file|
+          doc = Nokogiri::HTML(file)
+          description = textify_html_summary(doc.css(".job_description").first.inner_html)
+          return { description: description }
+        end
       end
     end
   end
