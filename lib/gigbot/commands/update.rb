@@ -17,6 +17,8 @@ module Gigbot
               source.title,
             ].join(' ')
           rescue StandardError => e
+            puts e
+            puts e.backtrace
             puts [
               "X".colorize(color: :red),
               "".ljust(7, ' '),

@@ -1,3 +1,6 @@
+- url: https://www.indeed.com/jobs?q=web+engineer&l=Remote
+  parser: indeed
+  title: Indeed
 - url: https://4dayweek.io/rss
   parser: rss
   title: 4 Day Week
