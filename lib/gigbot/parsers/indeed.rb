@@ -21,7 +21,6 @@ module Gigbot
         })
         browser.goto(url)
         browser.network.wait_for_idle
-        browser.screenshot(path: 'indeed.png')
         browser.css(".job_seen_beacon").each do |item|
           link = item.at_css('.jcs-JobTitle')
           title = link.at_css('span').text
