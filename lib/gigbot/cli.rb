@@ -7,8 +7,9 @@ require_relative 'commands'
 module Gigbot
   class CLI < Thor
     desc "update", "Updates jobs from all sources"
+    method_option :verbose, type: :boolean, aliases: 'v'
     def update
-      Gigbot::Commands::Update.run
+      Gigbot::Commands::Update.run(options)
     end
 
     desc "list", "Lists jobs from all sources"

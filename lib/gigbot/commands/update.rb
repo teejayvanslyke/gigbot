@@ -3,11 +3,11 @@ require_relative '../source'
 module Gigbot
   module Commands
     class Update
-      def self.run
-        new.run
+      def self.run(options={})
+        new.run(options)
       end
 
-      def run
+      def run(options={})
         Gigbot::Source.each do |source|
           begin
             source.import
@@ -17,8 +17,10 @@ module Gigbot
               source.title,
             ].join(' ')
           rescue StandardError => e
-            puts e
-            puts e.backtrace
+            if options[:verbose]
+              puts e
+              puts e.backtrace
+            end
             puts [
               "X".colorize(color: :red),
               "".ljust(7, ' '),
