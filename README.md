@@ -16,16 +16,26 @@ For personal use only.
 
 ## Installation
 
-I have yet to push a release to RubyGems, so for now you'll need to
-install it manually:
-
-``` 
-git clone https://github.com/teejayvanslyke/gigbot.git
-cd gigbot
-gem install gigbot.gemspec
-```
+    $ gem install gigbot
 
 ## Usage
+
+### Job Sources
+
+Gigbot currently pulls job listings from the following sources:
+
+* [Indeed](https://indeed.com)
+* [4 Day Week](https://4dayweek.io)
+* [justremote.co](https://justremote.co)
+* [Remotive](https://remotive.com)
+* [remote.io](https://remote.io)
+* [Rust Jobs](https://rustjobs.dev)
+* [NoDesk](https://nodesk.co)
+* [PyJobs](https://www.pyjobs.com)
+* [JS Remotely](https://jsremotely.com)
+* [We Work Remotely](https://weworkremotely.com)
+* [Ruby on Remote](https://rubyonremote.com)
+* [remoteok.io](https://remote.co)
 
 ### Commands
 
