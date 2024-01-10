@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.authors = ["Teejay VanSlyke"]
   spec.email = ["root@teejayvanslyke.com"]
 
-  spec.summary = "Finding remote jobs"
-  spec.homepage = "https://teejayvanslyke.com"
+  spec.summary = "Git-inspired remote tech job aggregator for the command line"
+  spec.homepage = "https://github.com/teejayvanslyke/gigbot"
   spec.license = "MIT"
   spec.required_ruby_version = ">= 2.6.0"
 
@@ -22,7 +22,7 @@ Gem::Specification.new do |spec|
     end
   end
   spec.bindir = "exe"
-  spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
+  spec.executables << "gigbot"
   spec.require_paths = ["lib"]
 
   # Uncomment to register a new dependency of your gem
