@@ -1,3 +1,5 @@
+require 'fileutils'
+
 require_relative '../source'
 
 module Gigbot
@@ -8,6 +10,8 @@ module Gigbot
       end
 
       def run(options={})
+        puts "here"
+        FileUtils.mkdir_p Gigbot::DATA_PATH
         Gigbot::Source.each do |source|
           begin
             source.import

@@ -2,8 +2,9 @@ require 'digest'
 require 'fileutils'
 
 module Gigbot
+  DATA_PATH = File.join(Dir.home, '.gigbot', 'data')
+
   class Gig
-    DATA_PATH = File.dirname(__FILE__) + '/../../data'
 
     def initialize(attributes = {})
       @title = attributes[:title]
