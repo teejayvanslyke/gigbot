@@ -1,15 +1,21 @@
 PATH
   remote: .
   specs:
-    gigbot (0.1.0)
+    gigbot (0.1.2)
+      colorize
+      feedjira
+      ferrum
+      rss
+      thor
+      tty-pager
 
 GEM
   remote: https://rubygems.org/
   specs:
-    addressable (2.8.5)
+    addressable (2.8.6)
       public_suffix (>= 2.0.2, < 6.0)
     colorize (1.1.0)
-    concurrent-ruby (1.2.2)
+    concurrent-ruby (1.2.3)
     crass (1.0.6)
     diff-lcs (1.5.0)
     feedjira (3.2.2)
@@ -23,7 +29,7 @@ GEM
     loofah (2.22.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
-    nokogiri (1.15.5-arm64-darwin)
+    nokogiri (1.16.0-arm64-darwin)
       racc (~> 1.4)
     public_suffix (5.0.4)
     racc (1.7.3)
@@ -54,7 +60,7 @@ GEM
     tty-pager (0.14.0)
       strings (~> 0.2.0)
       tty-screen (~> 0.8)
-    tty-screen (0.8.1)
+    tty-screen (0.8.2)
     unicode-display_width (2.5.0)
     unicode_utils (1.4.0)
     webrick (1.8.1)
@@ -66,15 +72,9 @@ PLATFORMS
   arm64-darwin-21
 
 DEPENDENCIES
-  colorize
-  feedjira
-  ferrum
   gigbot!
   rake (~> 13.0)
   rspec (~> 3.0)
-  rss
-  thor
-  tty-pager
 
 BUNDLED WITH
    2.4.20
