@@ -69,7 +69,7 @@ module Gigbot
     end
 
     def self.from_yaml(yaml_path)
-      data = YAML.load_file(yaml_path)
+      data = YAML.load_file(yaml_path, permitted_classes: [ Time, Symbol ])
       new(data)
     end
   end
